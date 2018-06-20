@@ -5,12 +5,44 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "verbose": true,
+    "execMap": {
+      "js": "node --harmony"
+    },
+    "events": {
+      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "watch": [
+      "package.json",
+      "app.js",
+      "app/",
+      "bin/",
+      "config/",
+      "config/env",
+      "lib/",
+      "test/"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json,coffee"
+  },
   "dependencies": {
+    "coffeescript": "2.3.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "extend": "3.0.1",
     "http-errors": "~1.6.2",
+    "moment-timezone": "0.5.20",
     "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "underscore": "1.9.1"
   }
 }
