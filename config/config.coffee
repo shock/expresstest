@@ -14,7 +14,7 @@ else
 
 # Default config
 default_config =
-  port: 3000
+  app_port: 3000
 
 # Override the default config with values from the environment config
 config = extend(default_config, config)
