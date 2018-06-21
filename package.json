@@ -44,6 +44,7 @@
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "sails-postgresql": "1.0.1",
-    "underscore": "1.9.1"
+    "underscore": "1.9.1",
+    "waterline": "0.13.4"
   }
 }
