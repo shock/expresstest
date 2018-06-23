@@ -39,7 +39,6 @@ orm.initialize(app, app.get('port'), function(collections, connections) {
         server.on('listening', onListening);
     });
     console.log('server listening on port ' + app.get('port'));
-
 });
 
 /**
