@@ -21,3 +21,6 @@ $ nr drop
 ```
 $ nr debug
 ```
+
+## TODO
+* Investigate using `sails-hook-orm` module to integrate migrations more conventionally
