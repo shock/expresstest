@@ -24,20 +24,23 @@ default_config =
     postgres_database:
       adapter: 'sails-postgres'
       url: 'postgres://expresstest@localhost:5432/expresstest_development'
-  # models:
-  #   user: rootRequire('app/models/user')
   defaultModelSettings:
     primaryKey: 'id'
     datastore: 'default'
     attributes:
       id:
         type: 'number'
-        autoMigrations: autoIncrement: true
+        autoMigrations:
+          autoIncrement: true
+          columnType: '_numberkey'
+          unique: true
       createdAt:
         type: 'number'
+        autoMigrations: columnType: '_numbertimestamp'
         autoCreatedAt: true
       updatedAt:
         type: 'number'
+        autoMigrations: columnType: '_numbertimestamp'
         autoUpdatedAt: true
 
 

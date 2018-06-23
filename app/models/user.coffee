@@ -1,22 +1,14 @@
 'use strict'
 
 Waterline = require('waterline')
+config = rootRequire('config/config')
+extend = require 'extend'
 
-module.exports = Waterline.Collection.extend
+module.exports = Waterline.Collection.extend(extend true, {}, config.defaultModelSettings,
   identity: 'user'
-  primaryKey: 'id'
   attributes:
-    id:
-      type: 'number'
-      autoMigrations: autoIncrement: true
-    createdAt:
-      type: 'number'
-      autoCreatedAt: true
-      autoMigrations: {} # required for sails-postgresl adapter.  why?
-    updatedAt:
-      type: 'number'
-      autoUpdatedAt: {} # required for sails-postgresl adapter.  why?
-      autoMigrations: autoIncrement: true
-    emailAddress: { type: 'string', required: true }
-    firstName: { type: 'string' }
-    lastName: { type: 'string' }
+    firstName: type: 'string'
+    lastName: type: 'string'
+)
+
+
