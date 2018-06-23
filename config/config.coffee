@@ -23,7 +23,7 @@ default_config =
       default:
         adapter: 'sails-postgres'
         url: 'postgres://expresstest@localhost:5432/expresstest_development'
-    migrationStrategy: 'safe'
+    migrate: 'safe'
     defaultModelSettings:
       primaryKey: 'id'
       datastore: 'default'
