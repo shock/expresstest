@@ -25,14 +25,18 @@ app.set('port', port);
 
 var orm = rootRequire('config/waterline');
 
+
 /**
  * Initialize the ORM and Create HTTP server
  */
 
-orm.initialize(app, app.get('port'), function(collections, datastores) {
+orm.initialize(app, app.get('port'), function(orm) {
     // store the collections and datastores retrieved to the app instance
-    app.set('models',collections);
-    app.set('datastores', datastores);
+    app.set('models', orm.collections);
+    app.set('datastores', orm.datastores);
+    app.set('orm', orm);
+    console.log("app.orm: " + app.get('orm'));
+
     var server = app.listen(app.get('port'), function() {
         debug('Express server listening on port ' + server.address().port);
         server.on('error', onError);

@@ -6,12 +6,13 @@ extend = require 'extend'
 
 User = extend true, {}, config.defaultModelSettings,
   identity: 'user'
+  tableName: 'users'
   attributes:
-    firstName:
+    first_name:
       type: 'string'
       autoMigrations:
         columnType: '_stringkey'
-    lastName:
+    last_name:
       type: 'string'
       autoMigrations:
         columnType: '_stringkey'

@@ -11,27 +11,28 @@ waterline.registerModel User
 initialize = (app, PORT, callback) ->
   # Initialize the whole database and store models and datastores to app
   wl_init_promise = new Promise((resolve, reject) ->
-    waterline.initialize config, (err, models) ->
+    waterline.initialize config, (err, orm) ->
       if err
         console.log 'error initializing waterline: ' + err
         reject err
-      console.log 'Waterline initialized 1'
-      resolve(models)
+      resolve(orm)
       return
     return
   )
-  wl_init_promise.then (models) ->
+  wl_init_promise.then (orm) ->
+    console.log 'Waterline initialized'
     console.log "Running auto migrations with strategy '#{config.migrate}'"
 
     # a total hack to get the migration strategy to work!
-    waterline.collections = models.collections
-    waterline.datastores = models.datastores
+    waterline.collections = orm.collections
+    waterline.datastores = orm.datastores
     # end of hack
 
     runAutoMigrations config.migrate, waterline, (err) ->
       if err
         throw err
-    callback models.collections, models.datastores
+    callback orm
+
   .catch (err) ->
     throw err
 
