@@ -5,7 +5,6 @@ express = require('express')
 path = require('path')
 cookieParser = require('cookie-parser')
 logger = require('morgan')
-
 request_utils = rootRequire('lib/middle_ware/request_utils')
 
 app = express()
@@ -15,10 +14,9 @@ app.use (req, res, next) ->
   next()
   return
 
-rootRequire('app/routes')(app)
+app.use(request_utils.merge_params)
 
-console.log require.merge_params
-# app.use(request_utils.merge_params)
+rootRequire('app/routes')(app)
 
 # view engine setup
 app.set 'views', path.join(__dirname, 'views')
