@@ -34,11 +34,11 @@ default_config =
             autoIncrement: true
             columnType: '_numberkey'
             unique: true
-        createdAt:
+        created_at:
           type: 'number'
           autoMigrations: columnType: '_numbertimestamp'
           autoCreatedAt: true
-        updatedAt:
+        updated_at:
           type: 'number'
           autoMigrations: columnType: '_numbertimestamp'
           autoUpdatedAt: true
