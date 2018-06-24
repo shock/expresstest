@@ -17,6 +17,17 @@ or
 $ nr drop
 ```
 
+#### Nodemon
+
+You can use `nodemon` to auto-restart the app when files are changed.  See `nodemonConfig` section of `package.json` for details.
+
+Start the app using `nodemon`:
+
+`$ nodemon`
+
+Note: Since `bin/www` does not have a file extension, you have to manually restart the app by typing `rs` into the terminal where `nodemon` is running.
+
+
 ## Debugging using Chrome DevTools
 ```
 $ nr debug
