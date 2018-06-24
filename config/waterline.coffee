@@ -23,12 +23,7 @@ initialize = (app, PORT, callback) ->
     console.log 'Waterline initialized'
     console.log "Running auto migrations with strategy '#{config.migrate}'"
 
-    # a total hack to get the migration strategy to work!
-    waterline.collections = orm.collections
-    waterline.datastores = orm.datastores
-    # end of hack
-
-    runAutoMigrations config.migrate, waterline, (err) ->
+    runAutoMigrations config.migrate, orm, (err) ->
       if err
         throw err
     callback orm
