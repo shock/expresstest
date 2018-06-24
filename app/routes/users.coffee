@@ -1,16 +1,22 @@
 express = require('express')
 router = express.Router()
 Waterline = require('waterline')
-
 extend = require('extend')
-processGetRequest = (req, res, cb) ->
-  # merge the query parameters in the req.params
-  req.params = extend(req.params, req.query)
+
+# wl_init_promise = new Promise((resolve, reject) ->
+#   waterline.initialize config, (err, orm) ->
+#     if err
+#       console.log 'error initializing waterline: ' + err
+#       reject err
+#     resolve(orm)
+#     return
+#   return
+# )
 
 ### GET index ###
 
 router.get '/', (req, res, next) ->
-  Waterline.getModel('user', req.orm).find().exec (err, result_set) ->
+  req.models.user.find().exec (err, result_set) ->
     if err
       switch err.name
         when 'UsageError'
@@ -24,9 +30,8 @@ router.get '/', (req, res, next) ->
 ### GET show ###
 
 router.get '/:id', (req, res, next) ->
-  processGetRequest(req, res)
   console.log req.params
-  Waterline.getModel('user', req.orm)
+  req.models.user
   .findOne(id: req.params.id)
   .exec (err, result_set) ->
     if err

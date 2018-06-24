@@ -11,7 +11,6 @@ request_utils = rootRequire('lib/middle_ware/request_utils')
 app = express()
 
 app.use (req, res, next) ->
-  req.orm = app.get('orm')
   req.models = app.get('models')
   next()
   return

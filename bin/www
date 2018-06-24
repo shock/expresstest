@@ -34,7 +34,6 @@ orm.initialize(app, app.get('port'), function(orm) {
     // store the collections and datastores retrieved to the app instance
     app.set('models', orm.collections);
     app.set('datastores', orm.datastores);
-    app.set('orm', orm);
 
     var server = app.listen(app.get('port'), function() {
         debug('Express server listening on port ' + server.address().port);
