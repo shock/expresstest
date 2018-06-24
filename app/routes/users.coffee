@@ -2,6 +2,7 @@ express = require('express')
 router = express.Router()
 Waterline = require('waterline')
 extend = require('extend')
+ru = rootRequire('app/lib/request_utils')
 
 # wl_init_promise = new Promise((resolve, reject) ->
 #   waterline.initialize config, (err, orm) ->
@@ -17,30 +18,19 @@ extend = require('extend')
 
 router.get '/', (req, res, next) ->
   req.models.user.find().exec (err, result_set) ->
-    if err
-      switch err.name
-        when 'UsageError'
-          return res.sendStatus(400)
-        else
-          console.error 'Unexpected error occurred:', err.stack
-          return res.sendStatus(500)
+    if ru.hasError(err, res)
+      return
     res.json result_set
   return
 
 ### GET show ###
 
 router.get '/:id', (req, res, next) ->
-  console.log req.params
+  ru.merge_params(req)
   req.models.user
   .findOne(id: req.params.id)
   .exec (err, result_set) ->
-    if err
-      switch err.name
-        when 'UsageError'
-          return res.sendStatus(400)
-        else
-          console.error 'Unexpected error occurred:', err.stack
-          return res.sendStatus(500)
+    return if ru.hasError(err, res, next)
     res.json result_set
   return
 
