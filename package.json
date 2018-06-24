@@ -23,7 +23,7 @@
     },
     "watch": [
       "package.json",
-      "app.js",
+      "app.coffee",
       "app/",
       "bin/",
       "config/",

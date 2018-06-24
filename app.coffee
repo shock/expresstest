@@ -5,8 +5,8 @@ express = require('express')
 path = require('path')
 cookieParser = require('cookie-parser')
 logger = require('morgan')
-indexRouter = require('./app/routes/index')
-usersRouter = require('./app/routes/users')
+
+request_utils = rootRequire('lib/middle_ware/request_utils')
 
 app = express()
 
@@ -16,8 +16,10 @@ app.use (req, res, next) ->
   next()
   return
 
-app.use '/', indexRouter
-app.use '/users', usersRouter
+rootRequire('app/routes')(app)
+
+console.log require.merge_params
+# app.use(request_utils.merge_params)
 
 # view engine setup
 app.set 'views', path.join(__dirname, 'views')
@@ -42,4 +44,6 @@ app.use (err, req, res, next) ->
   res.status err.status or 500
   res.render 'error'
   return
+
 module.exports = app
+
