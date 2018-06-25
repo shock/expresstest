@@ -4,19 +4,20 @@ block content
   h1 User
   table
     tr
-      td ID
+      td ID:
       td= user.id
     tr
-      td First Name
+      td First Name:
       td= user.first_name
     tr
-      td Last Name
+      td Last Name:
       td= user.last_name
     tr
-      td Created At
+      td Created At:
       td= new Date(user.created_at)
     tr
-      td First Name
+      td First Name:
       td= new Date(user.created_at)
 
   a(href=`/users/${user.id}/edit`) Edit User
+  a(href=`/users`) Back

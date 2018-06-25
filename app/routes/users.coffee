@@ -14,6 +14,32 @@ router.get '/', (req, res, next) ->
     res.render 'users/index'
   return
 
+### GET new ###
+
+router.get '/new', (req, res, next) ->
+  res.locals.user = {}
+  res.render 'users/new'
+  return
+
+### POST create ###
+
+router.post '/', (req, res, next) ->
+  req.models.user.create(req.body)
+  .meta(fetch: true)
+  .exec (err, result_set) ->
+    throw err if err
+    res.locals.user = result_set
+    res.render 'users/show'
+  return
+
+### POST destoy ###
+
+router.get '/:id/delete', (req, res, next) ->
+  req.models.user.destroy { id: req.params.id }, (err) ->
+    throw err if err
+    res.redirect("/users")
+  return
+
 ### GET show ###
 
 router.get '/:id', (req, res, next) ->
@@ -37,6 +63,8 @@ router.get '/:id/edit', (req, res, next) ->
     res.locals.user = result_set
     res.render 'users/edit'
   return
+
+### PUT update ###
 
 router.put '/:id', (req, res, next) ->
   # r_utils.merge_params(req)

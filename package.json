@@ -29,12 +29,13 @@
       "config/",
       "config/env",
       "lib/",
+      "views/",
       "test/"
     ],
     "env": {
       "NODE_ENV": "development"
     },
-    "ext": "js,json,coffee"
+    "ext": "js,json,coffee,pug"
   },
   "dependencies": {
     "coffeescript": "2.3.1",

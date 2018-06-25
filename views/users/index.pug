@@ -7,13 +7,23 @@ block content
       th Id
       th First Name
       th Last Name
-      th Create At
+      th Created At
       th Updated At
+      th Actions
     each user in users
       tr
         td= user.id
         td= user.first_name
         td= user.last_name
-        td= user.created_at
-        td= user.updated_at
+        td= new Date(user.created_at)
+        td= new Date(user.updated_at)
+        td
+          a(href=`/users/${user.id}`) View
+          | &nbsp;
+          a(href=`/users/${user.id}/edit`) Edit
+          | &nbsp;
+          //- The following doesn't fucking because the form.subit() in handleMethod doesn't submit the fucking form!
+          //- a(href=`/users/${user.id}/delete` _method="delete" onclick="handleMethod(this);") Delete
+          a(href=`/users/${user.id}/delete`) Delete
+  a(href="/users/new") Create New User
 
