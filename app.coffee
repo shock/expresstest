@@ -6,6 +6,7 @@ path = require('path')
 cookieParser = require('cookie-parser')
 logger = require('morgan')
 request_utils = rootRequire('app/lib/request_utils')
+methodOverride = require('method-override')
 
 app = express()
 
@@ -22,6 +23,14 @@ app.use express.json()
 app.use express.urlencoded(extended: false)
 app.use cookieParser()
 app.use express.static(path.join(__dirname, 'public'))
+
+app.use methodOverride (req, res) ->
+  if req.body and typeof req.body == 'object' and '_method' of req.body
+    # look in urlencoded POST bodies and delete it
+    method = req.body._method
+    delete req.body._method
+    return method
+  return
 
 rootRequire('app/routes')(app)
 
