@@ -14,6 +14,7 @@
       ".git",
       "node_modules/**/node_modules"
     ],
+    "delay": "100",
     "verbose": false,
     "execMap": {
       "js": "node --harmony"
